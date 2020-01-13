@@ -5,7 +5,7 @@ import { Element } from 'react-scroll';
 const Section = styled.section`
   display: flex;
   width: 100vw;
-  min-height: ${window.innerHeight}px;
+  min-height: 700px;
   background: #eee;
   padding: 80px 15px;
 `;

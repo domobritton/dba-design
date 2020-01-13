@@ -41,11 +41,17 @@ template {
 }
 a {
   background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
   -webkit-text-decoration-skip: objects;
 }
 a:active,
-a:hover {
+a:hover, :focus {
   outline-width: 0;
+}
+a:hover, a.active {
+  color: #c94e50;
 }
 abbr[title] {
   border-bottom: none;
@@ -185,7 +191,7 @@ textarea {
   font: inherit;
 }
 html {
-  font: 112.5%/1.45em georgia, serif;
+  font: 112.5%/1.45em raleway, sans-serif;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -200,7 +206,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: raleway, sans-serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -236,6 +242,12 @@ h1 {
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
   line-height: 1.1;
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
 }
 h2 {
   margin-left: 0;
@@ -619,4 +631,31 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+.menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 75px;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 40px;
+  color: white;
+}
+
+.toggleButton {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  height: 40;
+  line-height: 2.5;
+  padding-left: 16px;
+  padding-right: 16px;
+  outline: none;
+  cursor: pointer;
 }

@@ -5,48 +5,55 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import Header from "./header"
-import "./layout.css"
+import {Header, MobileMenu } from './header';
+
+import './layout.css';
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const MobileHeader = styled.div`
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+  const [panelOpen, setPanelOpen] = useState(false);
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+    <div id="outer-container">
+      <MobileHeader>
+        <MobileMenu panelOpen={panelOpen} setPanelOpen={setPanelOpen} />
+      </MobileHeader>
+      <Header panelOpen={panelOpen} setPanelOpen={setPanelOpen} />
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
+          maxWidth: 1680,
+          minHeight: 1700,
         }}
       >
-        <main>{children}</main>
+        <Main>{children}</Main>
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;
